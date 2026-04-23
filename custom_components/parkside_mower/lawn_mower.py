@@ -13,7 +13,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from .pymoebot2 import MoeBot
 from transitions.extensions import GraphMachine
 
-from custom_components.moebot import BaseMoeBotEntity
+from custom_components.parkside_mower import BaseMoeBotEntity
 from .const import DOMAIN
 
 _STATUS_TO_HA = {
