@@ -1,0 +1,94 @@
+{
+    "entity": {
+        "switch": {
+            "hedgehog_protection": {
+                "name": "Ochrona jeży"
+            },
+            "park_if_raining": {
+                "name": "Przerwa gdy pada"
+            }
+        },
+        "number": {
+            "mow_time": {
+                "name": "Czas koszenia"
+            }
+        },
+        "binary_sensor": {
+            "cover_open": {
+                "name": "Pokrywa"
+            }
+        },
+        "sensor": {
+            "moving_state": {
+                "name": "Stan kosiarki",
+                "state": {
+                    "STANDBY": "Stan spoczynku",
+                    "CHARGING": "Ładowanie",
+                    "MOWING": "Koszenie",
+                    "PAUSED": "Pauza",
+                    "PARK": "Powrót do stacji",
+                    "UPDATA": "Aktualizacja",
+                    "FIXED_MOWING": "Koszenie punktowe",
+                    "ERROR": "Błąd",
+                    "SELF_TEST": "Autodiagnostyka",
+                    "CHARGING_WITH_TASK_SUSPEND": "Ładowanie (przerwa podczas koszenia)",
+                    "EMERGENCY": "Zatrzymanie awaryjne",
+                    "LOCKED": "Blokada"
+                }
+            },
+            "battery_level" : {
+                "name": "Poziom baterii"
+            },
+            "emergency_state": {
+                "name": "Ostrzeżenie",
+                "state": {
+                    "MOWER_LEAN": "Kosiarka przechylona, proszę zwrócić uwagę na obszar roboczy",
+                    "MOWER_STEEP": "Zbyt duży kąt nachylenia kosiarki, proszę zachować ostrożność",
+                    "RAIN_PARK": "Powrót do stacji dokującej z powodu deszczu",
+                    "BATTERY_NOT_ENOUGH": "Niski poziom baterii, ładowanie rozpocznie się wkrótce",
+                    "NO_LOOP_SIGNAL": "Brak sygnału, proszę sprawdzić czy przewód graniczny jest sprawny",
+                    "CLOSE_TOPCOVER": "Proszę zamknąć pokrywę i zaczekać na rozpoczęcie pracy",
+                    "MOWER_IN_STATION": "Kosiarka znajduje się w stacji, proszę wyprowadzić kosiarkę ze stacji",
+                    "MOWER_OUT_STATION": "Kosiarki nie ma w stacji, proszę umieścić kosiarkę w stacji dokującej",
+                    "PLACE_INSIDE_STATION": "Proszę umieścić kosiarkę wewnątrz pętli granicznej i spróbować ponownie",
+                    "FIXED_END": "Zakończono koszenie punktowe",
+                    "CHARGING_DISCONNECT": "Niestabilne ładowanie, proszę sprawdzić styki ładowania",
+                    "CHARGING_PAUSE": "Przerwano ładowanie, proszę sprawdzić zasilanie stacji dokującej",
+                    "WORK_INTERRUPT": "Praca przerwana, proszę uruchomić ponownie",
+                    "FIXED_MOWING_INTERUPT": "Bieżąca praca przerwana, proszę sprawdzić czy otoczenie jest bezpieczne",
+                    "TURN_ON_BUTTON": "Proszę włączyć przełącznik fizyczny i spróbować ponownie",
+                    "PRESS_START_KEY": "Proszę nacisnąć przycisk Start, aby rozpocząć",
+                    "TIMESET_30MIN": "Czas rezerwacji jest dłuższy niż 30 minut",
+                    "TIMESET_UNLEGAL": "Nieprawidłowy czas rezerwacji",
+                    "CHARGR_CURRENT_LOW": "Niski prąd ładowania",
+                    "RAIN_OUT_STATION": "Oczekiwanie na ustanie deszczu",
+                    "UPDATA_FAIL": "Aktualizacja nie powiodła się",
+                    "CONTINUE_TOOLTIP": "Wyskakujące okno kontynuacji pracy",
+                    "MOWER_EMERGENCY": "Nagłe zatrzymanie kosiarki",
+                    "MOWER_UI_LOCKED": "Ekran zablokowany",
+                    "DISCHARGE_ERROR": "Nieprawidłowe rozładowywanie",
+                    "CHARGE_TEMP_ERROR": "Nieprawidłowa temperatura akumulatora"                  
+                }
+            },
+            "error_state": {
+                "name": "Błąd"
+            }
+        },
+        "vacuum": {
+            "parkside_vacuum": {
+                "name": "Parkside PRMA 20-li a1",
+                "state": {
+                    "returning": "Powrót do stacji"
+                }
+            }
+        },
+        "lawn_mower": {
+            "parkside_mower": {
+                "name": "Parkside PRMA 20-li a1",
+                "state": {
+                    "returning": "Powrót do stacji"
+                }
+            }
+        }
+    }
+}

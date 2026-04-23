@@ -1,0 +1,112 @@
+{
+  "entity": {
+    "switch": {
+      "hedgehog_protection": {
+          "name": "Hedgehog protection"
+      },
+      "park_if_raining": {
+          "name": "Park if raining"
+      }
+    },
+    "number": {
+      "mow_time": {
+        "name": "Mowing time"
+      }
+    },
+    "binary_sensor": {
+      "cover_open": {
+          "name": "Cover"
+      }
+    },
+    "sensor": {
+      "moving_state": {
+          "name": "Moving state",
+          "state": {
+              "STANDBY": "Standby",
+              "CHARGING": "Charging",
+              "MOWING": "Lawn Mowing",
+              "PAUSED": "Pause",
+              "PARK": "Return to Station",
+              "UPDATA": "Upgrade",
+              "FIXED_MOWING": "Fixed-Point Lawn Mowing",
+              "ERROR": "Error",
+              "SELF_TEST": "Self-Check",
+              "CHARGING_WITH_TASK_SUSPEND": "Charging with Working Module",
+              "EMERGENCY": "Emergency Stop",
+              "LOCKED": "Lock"
+          }
+      },
+      "battery_level" : {
+          "name": "Battery level"
+      },
+      "emergency_state": {
+          "name": "Emergency state",
+          "state": {
+              "MOWER_LEAN": "Machine tilted, please pay attention to the machine's working area",
+              "MOWER_STEEP": "Machine tilt angle is too large, please pay attention",
+              "RAIN_PARK": "Returning to base station to avoid rain",
+              "BATTERY_NOT_ENOUGH": "Low battery, charging will begin soon",
+              "NO_LOOP_SIGNAL": "No signal, please check if the boundary line is normal",
+              "CLOSE_TOPCOVER": "Please close the cover and wait for the machine to work",
+              "MOWER_IN_STATION": "Machine is at base station, please move the machine out of the base station",
+              "MOWER_OUT_STATION": "Machine is not at base station, please move the machine to the base station",
+              "PLACE_INSIDE_STATION": "Please move the machine within the boundary and try again",
+              "FIXED_END": "Fixed-point mowing work completed",
+              "CHARGING_DISCONNECT": "Unstable charging, please check if the charging electrodes are normal",
+              "CHARGING_PAUSE": "Charging interrupted, please check if the base station power supply is normal",
+              "WORK_INTERRUPT": "Work interrupted, please restart work",
+              "FIXED_MOWING_INTERUPT": "Current work terminated, please check if the surrounding environment is normal",
+              "TURN_ON_BUTTON": "Please turn on the physical switch and try again",
+              "PRESS_START_KEY": "Please press the start button to start",
+              "TIMESET_30MIN": "Reservation time is greater than 30 minutes",
+              "TIMESET_UNLEGAL": "Reservation time is invalid",
+              "CHARGR_CURRENT_LOW": "Low charging current",
+              "RAIN_OUT_STATION": "Avoiding rain",
+              "UPDATA_FAIL": "Upgrade failed",
+              "CONTINUE_TOOLTIP": "continue work pop-up",
+              "MOWER_EMERGENCY": "Machine stops abruptly",
+              "MOWER_UI_LOCKED": "Screen locked",
+              "DISCHARGE_ERROR": "Abnormal discharge",
+              "CHARGE_TEMP_ERROR": "Abnormal battery pack temperature"
+          }
+      },
+      "error_state": {
+          "name": "Error state"
+      }
+    },
+    "vacuum": {
+      "parkside_vacuum": {
+          "name": "Parkside PRMA 20-li a1",
+          "state": {
+              "returning": "Return to Station"
+          }
+      }
+    },
+    "lawn_mower": {
+        "parkside_mower": {
+            "name": "Parkside PRMA 20-li a1",
+            "state": {
+                "returning": "Return to Station"
+            }
+        }
+    }
+  },
+  "config": {
+    "abort": {
+      "already_configured": "Device is already configured"
+    },
+    "error": {
+      "cannot_connect": "Failed to connect",
+      "unknown": "Unexpected error"
+    },
+    "step": {
+      "user": {
+        "data": {
+          "device_id": "Device ID",
+          "ip_address": "IP Address",
+          "local_key": "Local Key"
+        }
+      }
+    }
+  }
+}
