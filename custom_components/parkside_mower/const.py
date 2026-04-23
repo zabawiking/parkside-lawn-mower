@@ -1,6 +1,6 @@
 """Constants for the MoeBot integration."""
 
-DOMAIN = "parkside"
+DOMAIN = "parkside_mower"
 
 DEVICE_ID = "device_id"
 IP_ADDRESS = "ip_address"
