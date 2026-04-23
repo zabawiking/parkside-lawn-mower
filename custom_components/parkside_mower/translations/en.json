@@ -42,6 +42,7 @@
       "emergency_state": {
           "name": "Emergency state",
           "state": {
+              "NONE": "None",
               "MOWER_LEAN": "Machine tilted, please pay attention to the machine's working area",
               "MOWER_STEEP": "Machine tilt angle is too large, please pay attention",
               "RAIN_PARK": "Returning to base station to avoid rain",

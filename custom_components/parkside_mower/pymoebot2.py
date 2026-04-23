@@ -126,7 +126,6 @@ class MoeBot:
         self.__zones: ZoneConfig = None
         self.__cover_open: bool = False
         self.__hedgehog_protection: bool = False
-        self.__fault_reserved: int = 0
 
         self.__last_update = None
         self.__tuya_version = self.__do_proto_check()
@@ -165,6 +164,9 @@ class MoeBot:
             self.__state = dps['101']
         if '103' in dps:
             self.__emergency_state = dps['103']
+            # seems like MOWER_LEAN is 'no emergency' state
+            if self.__emergency_state == "MOWER_LEAN":
+                self.__emergency_state == "NONE"
         if '102' in dps:
             self.__error_state = self.__bitmap_to_list(int(dps['102']))
         if '104' in dps:
@@ -181,8 +183,6 @@ class MoeBot:
             self.__cover_open = dps['116']
         if '118' in dps:
             self.__hedgehog_protection = dps['118']
-        if '131' in dps:
-            self.__fault_reserved = dps['131']
 
         if 't' in data:
             self.__last_update = data['t']
@@ -371,10 +371,6 @@ class MoeBot:
     @hedgehog_protection.setter
     def hedgehog_protection(self, hedgehog_protection: bool):
         self.__queue_command(118, hedgehog_protection)
-
-    @property
-    def fault_reserved(self) -> int:
-        return self.__fault_reserved    
 
     def start(self, spiral=False) -> None:
         _log.debug("Attempting to start mowing: %r", self.__state)

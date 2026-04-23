@@ -18,7 +18,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
     async_add_entities(
         [MowingStateSensor(moebot), BatterySensor(moebot), EmergencyStateSensor(moebot), ErrorStateSensor(moebot), 
-        FaultReservedSensor(moebot), TuyaVersionSensor(moebot)])
+        TuyaVersionSensor(moebot)])
 
 
 class SensorBase(BaseMoeBotEntity, SensorEntity):
@@ -110,27 +110,6 @@ class BatterySensor(SensorBase):
     def native_value(self) -> int:
         """Return the state of the sensor."""
         return int(self._moebot.battery)
-
-class FaultReservedSensor(SensorBase):
-    def __init__(self, moebot):
-        """Initialize the sensor."""
-        super().__init__(moebot)
-
-        # A unique_id for this entity within this domain.
-        # Note: This is NOT used to generate the user visible Entity ID used in automations.
-        self._attr_unique_id = f"{self._moebot.id}_fault_reserved"
-
-        # The name of the entity
-        #self._attr_has_entity_name = True
-        #self._attr_translation_key = "fault_reserved"
-        self._attr_name = f"Fault?"
-
-    # The value of this sensor. As this is a SensorDeviceClass.BATTERY, this value must be
-    # the battery level as a percentage (between 0 and 100)
-    @property
-    def native_value(self) -> int:
-        """Return the state of the sensor."""
-        return int(self._moebot.fault_reserved)
 
 class TuyaVersionSensor(SensorBase):
     def __init__(self, moebot):

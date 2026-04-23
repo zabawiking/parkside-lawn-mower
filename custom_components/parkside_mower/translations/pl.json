@@ -42,6 +42,7 @@
             "emergency_state": {
                 "name": "Ostrzeżenie",
                 "state": {
+                    "NONE": "Brak",
                     "MOWER_LEAN": "Kosiarka przechylona, proszę zwrócić uwagę na obszar roboczy",
                     "MOWER_STEEP": "Zbyt duży kąt nachylenia kosiarki, proszę zachować ostrożność",
                     "RAIN_PARK": "Powrót do stacji dokującej z powodu deszczu",
