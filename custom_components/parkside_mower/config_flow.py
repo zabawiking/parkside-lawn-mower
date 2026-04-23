@@ -43,7 +43,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
         raise CannotConnect
 
     # Return info that you want to store in the config entry.
-    return {"title": "MoeBot (%s)" % d.id, "id": d.id}
+    return {"title": "Parkside mower (%s)" % d.id, "id": d.id}
 
 
 class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
