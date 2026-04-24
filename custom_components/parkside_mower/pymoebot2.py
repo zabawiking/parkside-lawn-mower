@@ -166,7 +166,7 @@ class MoeBot:
             self.__emergency_state = dps['103']
             # seems like MOWER_LEAN is 'no emergency' state
             if self.__emergency_state == "MOWER_LEAN":
-                self.__emergency_state == "NONE"
+                self.__emergency_state = "NONE"
         if '102' in dps:
             self.__error_state = self.__bitmap_to_list(int(dps['102']))
         if '104' in dps:
