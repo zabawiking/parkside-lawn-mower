@@ -6,11 +6,17 @@
             },
             "park_if_raining": {
                 "name": "Przerwa gdy pada"
+            },
+            "rain_compensation": {
+                "name": "Kompensacja czasu po deszczu"
             }
         },
         "number": {
             "mow_time": {
                 "name": "Czas koszenia"
+            },
+            "rain_compensation_time": {
+                "name": "Czas kompensacji"
             }
         },
         "binary_sensor": {

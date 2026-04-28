@@ -16,7 +16,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     """Add sensors for passed config_entry in HA."""
     moebot = hass.data[DOMAIN][config_entry.entry_id]
 
-    entities = [WorkingTimeNumber(moebot)]
+    entities = [WorkingTimeNumber(moebot), RainCompentastionTimeNumber(moebot)]
     for zone in range(1, 6):
         for part in ZoneNumberType:
             entities.append(ZoneConfigNumber(moebot, zone, part))
@@ -50,6 +50,33 @@ class WorkingTimeNumber(BaseMoeBotEntity, NumberEntity):
 
     def set_native_value(self, value: int) -> 1:
         self._moebot.mow_time = int(value)
+
+class RainCompentastionTimeNumber(BaseMoeBotEntity, NumberEntity):
+
+    def __init__(self, moebot):
+        super().__init__(moebot)
+
+        # A unique_id for this entity within this domain.
+        # Note: This is NOT used to generate the user visible Entity ID used in automations.
+        self._attr_unique_id = f"{self._moebot.id}_rain_compensation_time"
+        self._attr_entity_category = EntityCategory.CONFIG
+
+        self._attr_has_entity_name = True
+        self._attr_translation_key = "rain_compensation_time"
+
+        self._attr_native_min_value = 1
+        self._attr_native_max_value = 12
+        self._attr_native_step = 1
+        self._attr_mode = NumberMode.BOX
+        self._attr_device_class = NumberDeviceClass.DURATION
+        self._attr_native_unit_of_measurement = "m"
+
+    @property
+    def native_value(self) -> int:
+        return self._moebot.rain_compensation_time
+
+    def set_native_value(self, value: int) -> 1:
+        self._moebot.rain_compensation_time = int(value)
 
 
 @dataclass

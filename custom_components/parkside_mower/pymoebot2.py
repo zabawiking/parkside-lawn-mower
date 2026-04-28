@@ -126,6 +126,8 @@ class MoeBot:
         self.__zones: ZoneConfig = None
         self.__cover_open: bool = False
         self.__hedgehog_protection: bool = False
+        self.__rain_compensation: bool = False
+        self.__rain_compensation_time: int = 0
 
         self.__last_update = None
         self.__tuya_version = self.__do_proto_check()
@@ -137,9 +139,11 @@ class MoeBot:
         self.__shutdown.set()  # The thread should be flagged as not running
 
     def __do_proto_check(self) -> str:
-        versions = [3.4, 3.3]
+        #versions = [3.4, 3.3]
+        versions = [3.3]
         for version in versions:
             self.__device.set_version(version)
+            self.__device.set_dpsUsed({'139': None})
             result = self.__device.status()
             _log.debug("Set TUYA version to %r and got the following result: %r" % (version, result))
             if self.__parse_payload(result):
@@ -151,7 +155,7 @@ class MoeBot:
     def __parse_payload(self, data) -> bool:
         if data is None or 'Err' in data or 'dps' not in data:
             _log.error("Error from device: %r" % data)
-            if data is not None and 'Err' in data and data['Err'] == 905:
+            if data is not None and 'Err' in data and (data['Err'] == 905 or data['Err'] == 901):
                 self.__online = False
             return False
 
@@ -168,7 +172,7 @@ class MoeBot:
             if self.__emergency_state == "MOWER_LEAN":
                 self.__emergency_state = "NONE"
         if '102' in dps:
-            self.__error_state = self.__bitmap_to_list(int(dps['102']))
+            self.__error_state = self.__bitmap_to_list(dps['102'])
         if '104' in dps:
             self.__mow_in_rain = dps['104']
         if '105' in dps:
@@ -183,7 +187,8 @@ class MoeBot:
             self.__cover_open = dps['116']
         if '118' in dps:
             self.__hedgehog_protection = dps['118']
-
+        if '139' in dps:
+            self.__decode_compensation(dps['139'])
         if 't' in data:
             self.__last_update = data['t']
 
@@ -191,6 +196,15 @@ class MoeBot:
             listener(data)
 
         return True
+
+    def __decode_compensation(self, value):
+        _log.debug("Rain compensation data received: %s", value)
+        decoded = base64.b64decode(value)        
+        self.__rain_compensation = decoded[0] > 0
+        self.__rain_compensation_time = decoded[1]
+
+    def __send_compensation(self, enabled, value):
+        pass
 
     def __bitmap_to_list(self, value):
         """Parse bitmap to errors"""
@@ -200,19 +214,23 @@ class MoeBot:
                 active_errors.append(name)
         return active_errors
 
-    def __queue_command(self, dps, arg):
+    def __queue_command(self, dps, arg, type="action"):
         # If we're not listening, we're not processing the queue, so we should do that.
         if self.is_listening:
             # Put the command in the queue
-            self.__queue.put((dps, arg))
+            self.__queue.put((dps, arg, type))
         else:
             _log.debug("Thread isn't running, so process the command now")
-            result = self.__device.set_value(dps, arg)
-            self.__parse_payload(result)
+            if type == "action":
+                result = self.__device.set_value(dps, arg)
+                self.__parse_payload(result)
+            else:
+                result = self.__device.updatedps(index=[command[0]], nowait=False)
+                self.__parse_payload(result)
         pass
 
     def __loop(self, send_queue: Queue):
-        STATUS_TIMER = 30
+        #STATUS_TIMER = 30
         KEEPALIVE_TIMER = 12
 
         _log.debug("Send an initial request for status")
@@ -220,7 +238,7 @@ class MoeBot:
 
         _log.debug("Begin the monitor loop")
         heartbeat_time = time.time() + KEEPALIVE_TIMER
-        status_time = time.time() + STATUS_TIMER
+        #status_time = time.time() + STATUS_TIMER
         while True:
             if self.__shutdown.is_set():
                 _log.debug("Thread has been shutdown, exiting listen loop")
@@ -228,13 +246,16 @@ class MoeBot:
             elif not send_queue.empty():
                 command = send_queue.get()
                 _log.debug("We have a message in the queue: {}".format(command))
-                data = self.__device.set_value(command[0], command[1])
+                if command[2] == "action":
+                    data = self.__device.set_value(command[0], command[1])
+                else:
+                    data = self.__device.updatedps(index=[command[0]], nowait=False)
                 send_queue.task_done()
-            elif status_time and time.time() >= status_time:
-                _log.debug("Time to poll for status")
-                self.poll()
-                status_time = time.time() + STATUS_TIMER
-                heartbeat_time = time.time() + KEEPALIVE_TIMER
+            # elif status_time and time.time() >= status_time:
+            #     _log.debug("Time to poll for status")
+            #     # self.poll()
+            #     status_time = time.time() + STATUS_TIMER
+            #     heartbeat_time = time.time() + KEEPALIVE_TIMER
             elif time.time() >= heartbeat_time:
                 _log.debug("Sending a heartbeat")
                 data = self.__device.heartbeat(nowait=False)
@@ -372,6 +393,22 @@ class MoeBot:
     def hedgehog_protection(self, hedgehog_protection: bool):
         self.__queue_command(118, hedgehog_protection)
 
+    @property
+    def rain_compensation(self) -> bool:
+        return self.__rain_compensation
+    
+    @rain_compensation.setter
+    def rain_compensation(self, rain_compensation: bool):
+        self.__send_compensation(rain_compensation, self.__rain_compensation_time)
+
+    @property
+    def rain_compensation_time(self) -> bool:
+        return self.__rain_compensation_time
+    
+    @rain_compensation_time.setter
+    def rain_compensation_time(self, rain_compensation_time: bool):
+        self.__send_compensation(self.__rain_compensation, rain_compensation_time)
+
     def start(self, spiral=False) -> None:
         _log.debug("Attempting to start mowing: %r", self.__state)
         if self.__state in ("STANDBY", "PAUSED", "CHARGING"):
@@ -390,8 +427,8 @@ class MoeBot:
             raise MoeBotStateException()
 
     def poll(self):
-        result = self.__device.status()
-        self.__parse_payload(result)
+        self.__device.set_dpsUsed({'139': None})
+        self.__device.status(nowait=True)
         self.__queue_command(109, '')
 
     def pause(self) -> None:

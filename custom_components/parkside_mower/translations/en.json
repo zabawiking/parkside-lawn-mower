@@ -6,11 +6,17 @@
       },
       "park_if_raining": {
           "name": "Park if raining"
+      },
+      "rain_compensation": {
+          "name": "Rain compensation"
       }
     },
     "number": {
       "mow_time": {
         "name": "Mowing time"
+      },
+      "rain_compensation_time": {
+        "name": "Compenastion time"
       }
     },
     "binary_sensor": {
