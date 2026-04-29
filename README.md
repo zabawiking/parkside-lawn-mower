@@ -27,9 +27,13 @@ conditions: []
 actions:
   - variables:
       lista_bledow: >
-        {% set ns = namespace(errors=[]) %}  {%if
-        states('sensor.kosiarka_ostrzezenie') != 'NONE'%}
+        {% set ns = namespace(errors=[]) %}  
+        {% if states('sensor.kosiarka_ostrzezenie') != 'NONE'%}
           {% set ns.errors = ns.errors + [ state_translated('sensor.kosiarka_ostrzezenie') ] %}
+        {% endif %}
+        
+        {% if states('sensor.kosiarka_stan_kosiarki') == 'EMERGENCY'%}
+          {% set ns.errors = ns.errors + [ state_translated('sensor.kosiarka_stan_kosiarki') ] %}
         {% endif %}
 
         {% if state_attr('sensor.kosiarka_blad', 'errorCount') > 0 %}
