@@ -84,8 +84,21 @@ class ErrorStateSensor(SensorBase):
     # The value of this sensor.
     @property
     def state(self):
-        """Return the state of the sensor."""
-        return self._moebot.error_state
+        """Return first state of the sensor."""
+        return self._moebot.error_state[0] if self._moebot.error_state else "UNKNOWN"
+
+    @property
+    def extra_state_attributes(self):
+        current_errors = self._moebot.error_state
+
+        # reuturn errorCount so it can be detected in notifications 
+        result = {"errorCount": len(current_errors) if current_errors else 0}
+        
+        # return array of erorrs in format ERROR_MOTOR_ERROR: MOTOR_ERROR so its easy to be translated
+        # and can be used in notifications
+        result.update({f"ERROR_{error}": error for error in (current_errors)})
+        
+        return result
 
 class BatterySensor(SensorBase):
     def __init__(self, moebot):

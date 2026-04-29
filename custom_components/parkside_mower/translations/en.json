@@ -2,13 +2,13 @@
   "entity": {
     "switch": {
       "hedgehog_protection": {
-          "name": "Hedgehog protection"
+        "name": "Hedgehog protection"
       },
       "park_if_raining": {
-          "name": "Park if raining"
+        "name": "Park if raining"
       },
       "rain_compensation": {
-          "name": "Rain compensation"
+        "name": "Rain compensation"
       }
     },
     "number": {
@@ -21,81 +21,328 @@
     },
     "binary_sensor": {
       "cover_open": {
-          "name": "Cover"
+        "name": "Cover"
       }
     },
     "sensor": {
       "moving_state": {
-          "name": "Moving state",
-          "state": {
-              "STANDBY": "Standby",
-              "CHARGING": "Charging",
-              "MOWING": "Lawn Mowing",
-              "PAUSED": "Pause",
-              "PARK": "Return to Station",
-              "UPDATA": "Upgrade",
-              "FIXED_MOWING": "Fixed-Point Lawn Mowing",
-              "ERROR": "Error",
-              "SELF_TEST": "Self-Check",
-              "CHARGING_WITH_TASK_SUSPEND": "Charging with Working Module",
-              "EMERGENCY": "Emergency Stop",
-              "LOCKED": "Lock"
-          }
+        "name": "Moving state",
+        "state": {
+          "STANDBY": "Standby",
+          "CHARGING": "Charging",
+          "MOWING": "Lawn Mowing",
+          "PAUSED": "Pause",
+          "PARK": "Return to Station",
+          "UPDATA": "Upgrade",
+          "FIXED_MOWING": "Fixed-Point Lawn Mowing",
+          "ERROR": "Error",
+          "SELF_TEST": "Self-Check",
+          "CHARGING_WITH_TASK_SUSPEND": "Charging with Working Module",
+          "EMERGENCY": "Emergency Stop",
+          "LOCKED": "Lock"
+        }
       },
-      "battery_level" : {
-          "name": "Battery level"
+      "battery_level": {
+        "name": "Battery level"
       },
       "emergency_state": {
-          "name": "Emergency state",
-          "state": {
-              "NONE": "None",
-              "MOWER_LEAN": "Machine tilted, please pay attention to the machine's working area",
-              "MOWER_STEEP": "Machine tilt angle is too large, please pay attention",
-              "RAIN_PARK": "Returning to base station to avoid rain",
-              "BATTERY_NOT_ENOUGH": "Low battery, charging will begin soon",
-              "NO_LOOP_SIGNAL": "No signal, please check if the boundary line is normal",
-              "CLOSE_TOPCOVER": "Please close the cover and wait for the machine to work",
-              "MOWER_IN_STATION": "Machine is at base station, please move the machine out of the base station",
-              "MOWER_OUT_STATION": "Machine is not at base station, please move the machine to the base station",
-              "PLACE_INSIDE_STATION": "Please move the machine within the boundary and try again",
-              "FIXED_END": "Fixed-point mowing work completed",
-              "CHARGING_DISCONNECT": "Unstable charging, please check if the charging electrodes are normal",
-              "CHARGING_PAUSE": "Charging interrupted, please check if the base station power supply is normal",
-              "WORK_INTERRUPT": "Work interrupted, please restart work",
-              "FIXED_MOWING_INTERUPT": "Current work terminated, please check if the surrounding environment is normal",
-              "TURN_ON_BUTTON": "Please turn on the physical switch and try again",
-              "PRESS_START_KEY": "Please press the start button to start",
-              "TIMESET_30MIN": "Reservation time is greater than 30 minutes",
-              "TIMESET_UNLEGAL": "Reservation time is invalid",
-              "CHARGR_CURRENT_LOW": "Low charging current",
-              "RAIN_OUT_STATION": "Avoiding rain",
-              "UPDATA_FAIL": "Upgrade failed",
-              "CONTINUE_TOOLTIP": "continue work pop-up",
-              "MOWER_EMERGENCY": "Machine stops abruptly",
-              "MOWER_UI_LOCKED": "Screen locked",
-              "DISCHARGE_ERROR": "Abnormal discharge",
-              "CHARGE_TEMP_ERROR": "Abnormal battery pack temperature"
-          }
+        "name": "Emergency state",
+        "state": {
+          "NONE": "None",
+          "MOWER_LEAN": "Machine tilted, please pay attention to the machine's working area",
+          "MOWER_STEEP": "Machine tilt angle is too large, please pay attention",
+          "RAIN_PARK": "Returning to base station to avoid rain",
+          "BATTERY_NOT_ENOUGH": "Low battery, charging will begin soon",
+          "NO_LOOP_SIGNAL": "No signal, please check if the boundary line is normal",
+          "CLOSE_TOPCOVER": "Please close the cover and wait for the machine to work",
+          "MOWER_IN_STATION": "Machine is at base station, please move the machine out of the base station",
+          "MOWER_OUT_STATION": "Machine is not at base station, please move the machine to the base station",
+          "PLACE_INSIDE_STATION": "Please move the machine within the boundary and try again",
+          "FIXED_END": "Fixed-point mowing work completed",
+          "CHARGING_DISCONNECT": "Unstable charging, please check if the charging electrodes are normal",
+          "CHARGING_PAUSE": "Charging interrupted, please check if the base station power supply is normal",
+          "WORK_INTERRUPT": "Work interrupted, please restart work",
+          "FIXED_MOWING_INTERUPT": "Current work terminated, please check if the surrounding environment is normal",
+          "TURN_ON_BUTTON": "Please turn on the physical switch and try again",
+          "PRESS_START_KEY": "Please press the start button to start",
+          "TIMESET_30MIN": "Reservation time is greater than 30 minutes",
+          "TIMESET_UNLEGAL": "Reservation time is invalid",
+          "CHARGR_CURRENT_LOW": "Low charging current",
+          "RAIN_OUT_STATION": "Avoiding rain",
+          "UPDATA_FAIL": "Upgrade failed",
+          "CONTINUE_TOOLTIP": "continue work pop-up",
+          "MOWER_EMERGENCY": "Machine stops abruptly",
+          "MOWER_UI_LOCKED": "Screen locked",
+          "DISCHARGE_ERROR": "Abnormal discharge",
+          "CHARGE_TEMP_ERROR": "Abnormal battery pack temperature"
+        }
       },
       "error_state": {
-          "name": "Error state"
+        "name": "Error state",
+        "state": {
+          "FAULT_LEAN": "Tilt less than 24°",
+          "FAULT_TOO_STEEP": "Tilt greater than 35°",
+          "NO_SIGNAL": "No boundary signal",
+          "L_MOTOR_ERROR": "Left motor stalled",
+          "R_MOTOR_ERROR": "Right motor stalled",
+          "BATTERY_VOL_HIG": "High battery voltage",
+          "B_TEMP_ERROR": "Abnormal battery temperature",
+          "DISCHAR_ERROR": "Discharge error",
+          "CHARGE_OVERTEMP": "Overheating during charging",
+          "BATTERY_DAMAGE": "Battery damage",
+          "BATTERY_LOWDIS": "Low battery voltage",
+          "CHARGE_CURDIS": "Overcurrent during discharge",
+          "CHARGE_TEMP": "Overheating during discharge",
+          "UNEXCEPECT_LOW": "Low charging voltage",
+          "B_ERROR_RESET": "Battery malfunction requiring restart",
+          "IMU_INVALID": "IMU failure",
+          "EMS_INVALID": "Boundary sensor failure",
+          "RAIN_INVALID": "Rain failure",
+          "HALL_INVALID": "Hall effect sensor failure",
+          "STEEP_OVER_3S": "Machine tilt",
+          "OUTSIDE_AREA": "Machine out of bounds",
+          "LIFTED": "Machine lifting",
+          "TRAPPED": "Machine stuck",
+          "B_MOTOR_ERROR": "Lawnmower motor malfunction",
+          "OVERTURN": "Machine overturning",
+          "MOTOR_OVERCUR": "Motor overcurrent",
+          "MOTOR_HALL": "Motor Hall effect sensor error",
+          "MOTOR_DISCON": "Motor board communication malfunction",
+          "EMS_DISCONNECT": "Boundary detection communication malfunction",
+          "MOTOR_ERROR": "Motor error"
+        },
+        "state_attributes": {
+          "errorCount": {
+            "name": "Error count"
+          },
+          "ERROR_FAULT_LEAN": {
+            "name": "Tilt less than 24°",
+            "state": {
+              "FAULT_LEAN": "Tilt less than 24°",
+              "NONE": "None"
+            }
+          },
+          "ERROR_FAULT_TOO_STEEP": {
+            "name": "Tilt greater than 35°",
+            "state": {
+              "FAULT_TOO_STEEP": "Tilt greater than 35°",
+              "NONE": "None"
+            }
+          },
+          "ERROR_NO_SIGNAL": {
+            "name": "No boundary signal",
+            "state": {
+              "NO_SIGNAL": "No boundary signal",
+              "NONE": "None"
+            }
+          },
+          "ERROR_L_MOTOR_ERROR": {
+            "name": "Left motor stalled",
+            "state": {
+              "L_MOTOR_ERROR": "Left motor stalled",
+              "NONE": "None"
+            }
+          },
+          "ERROR_R_MOTOR_ERROR": {
+            "name": "Right motor stalled",
+            "state": {
+              "R_MOTOR_ERROR": "Right motor stalled",
+              "NONE": "None"
+            }
+          },
+          "ERROR_BATTERY_VOL_HIG": {
+            "name": "High battery voltage",
+            "state": {
+              "BATTERY_VOL_HIG": "High battery voltage",
+              "NONE": "None"
+            }
+          },
+          "ERROR_B_TEMP_ERROR": {
+            "name": "Abnormal battery temperature",
+            "state": {
+              "B_TEMP_ERROR": "Abnormal battery temperature",
+              "NONE": "None"
+            }
+          },
+          "ERROR_DISCHAR_ERROR": {
+            "name": "Discharge error",
+            "state": {
+              "DISCHAR_ERROR": "Discharge error",
+              "NONE": "None"
+            }
+          },
+          "ERROR_CHARGE_OVERTEMP": {
+            "name": "Overheating during charging",
+            "state": {
+              "CHARGE_OVERTEMP": "Overheating during charging",
+              "NONE": "None"
+            }
+          },
+          "ERROR_BATTERY_DAMAGE": {
+            "name": "Battery damage",
+            "state": {
+              "BATTERY_DAMAGE": "Battery damage",
+              "NONE": "None"
+            }
+          },
+          "ERROR_BATTERY_LOWDIS": {
+            "name": "Low battery voltage",
+            "state": {
+              "BATTERY_LOWDIS": "Low battery voltage",
+              "NONE": "None"
+            }
+          },
+          "ERROR_CHARGE_CURDIS": {
+            "name": "Overcurrent during discharge",
+            "state": {
+              "CHARGE_CURDIS": "Overcurrent during discharge",
+              "NONE": "None"
+            }
+          },
+          "ERROR_CHARGE_TEMP": {
+            "name": "Overheating during discharge",
+            "state": {
+              "CHARGE_TEMP": "Overheating during discharge",
+              "NONE": "None"
+            }
+          },
+          "ERROR_UNEXCEPECT_LOW": {
+            "name": "Low charging voltage",
+            "state": {
+              "UNEXCEPECT_LOW": "Low charging voltage",
+              "NONE": "None"
+            }
+          },
+          "ERROR_B_ERROR_RESET": {
+            "name": "Battery malfunction requiring restart",
+            "state": {
+              "B_ERROR_RESET": "Battery malfunction requiring restart",
+              "NONE": "None"
+            }
+          },
+          "ERROR_IMU_INVALID": {
+            "name": "IMU failure",
+            "state": {
+              "IMU_INVALID": "IMU failure",
+              "NONE": "None"
+            }
+          },
+          "ERROR_EMS_INVALID": {
+            "name": "Boundary sensor failure",
+            "state": {
+              "EMS_INVALID": "Boundary sensor failure",
+              "NONE": "None"
+            }
+          },
+          "ERROR_RAIN_INVALID": {
+            "name": "Rain failure",
+            "state": {
+              "RAIN_INVALID": "Rain failure",
+              "NONE": "None"
+            }
+          },
+          "ERROR_HALL_INVALID": {
+            "name": "Hall effect sensor failure",
+            "state": {
+              "HALL_INVALID": "Hall effect sensor failure",
+              "NONE": "None"
+            }
+          },
+          "ERROR_STEEEP_OVER_3S": {
+            "name": "Machine tilt",
+            "state": {
+              "STEEEP_OVER_3S": "Machine tilt",
+              "NONE": "None"
+            }
+          },
+          "ERROR_OUTSIDE_AREA": {
+            "name": "Machine out of bounds",
+            "state": {
+              "OUTSIDE_AREA": "Machine out of bounds",
+              "NONE": "None"
+            }
+          },
+          "ERROR_LIFTED": {
+            "name": "Machine lifting",
+            "state": {
+              "LIFTED": "Machine lifting",
+              "NONE": "None"
+            }
+          },
+          "ERROR_TRAPPED": {
+            "name": "Machine stuck",
+            "state": {
+              "TRAPPED": "Machine stuck",
+              "NONE": "None"
+            }
+          },
+          "ERROR_B_MOTOR_ERROR": {
+            "name": "Lawnmower motor malfunction",
+            "state": {
+              "B_MOTOR_ERROR": "Lawnmower motor malfunction",
+              "NONE": "None"
+            }
+          },
+          "ERROR_OVERTURN": {
+            "name": "Machine overturning",
+            "state": {
+              "OVERTURN": "Machine overturning",
+              "NONE": "None"
+            }
+          },
+          "ERROR_MOTOR_OVERCUR": {
+            "name": "Motor overcurrent",
+            "state": {
+              "MOTOR_OVERCUR": "Motor overcurrent",
+              "NONE": "None"
+            }
+          },
+          "ERROR_MOTOR_HALL": {
+            "name": "Motor Hall effect sensor error",
+            "state": {
+              "MOTOR_HALL": "Motor Hall effect sensor error",
+              "NONE": "None"
+            }
+          },
+          "ERROR_MOTOR_DISCON": {
+            "name": "Motor board communication malfunction",
+            "state": {
+              "MOTOR_DISCON": "Motor board communication malfunction",
+              "NONE": "None"
+            }
+          },
+          "ERROR_EMS_DISCONNECT": {
+            "name": "Boundary detection communication malfunction",
+            "state": {
+              "EMS_DISCONNECT": "Boundary detection communication malfunction",
+              "NONE": "None"
+            }
+          },
+          "ERROR_MOTOR_ERROR": {
+            "name": "Motor error",
+            "state": {
+              "MOTOR_ERROR": "Motor error",
+              "NONE": "None"
+            }
+          }
+        }
       }
     },
     "vacuum": {
       "parkside_vacuum": {
-          "name": "Parkside PRMA 20-li a1",
-          "state": {
-              "returning": "Return to Station"
-          }
+        "name": "Parkside PRMA 20-li a1",
+        "state": {
+          "returning": "Return to Station"
+        }
       }
     },
     "lawn_mower": {
-        "parkside_mower": {
-            "name": "Parkside PRMA 20-li a1",
-            "state": {
-                "returning": "Return to Station"
-            }
+      "parkside_mower": {
+        "name": "Parkside PRMA 20-li a1",
+        "state": {
+          "returning": "Return to Station"
         }
+      }
     }
   },
   "config": {

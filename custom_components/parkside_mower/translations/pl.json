@@ -42,7 +42,7 @@
                     "LOCKED": "Blokada"
                 }
             },
-            "battery_level" : {
+            "battery_level": {
                 "name": "Poziom baterii"
             },
             "emergency_state": {
@@ -74,11 +74,258 @@
                     "MOWER_EMERGENCY": "Nagłe zatrzymanie kosiarki",
                     "MOWER_UI_LOCKED": "Ekran zablokowany",
                     "DISCHARGE_ERROR": "Nieprawidłowe rozładowywanie",
-                    "CHARGE_TEMP_ERROR": "Nieprawidłowa temperatura akumulatora"                  
+                    "CHARGE_TEMP_ERROR": "Nieprawidłowa temperatura akumulatora"
                 }
             },
             "error_state": {
-                "name": "Błąd"
+                "name": "Błąd",
+                "state": {
+                    "FAULT_LEAN": "Pochylenie poniżej 24°",
+                    "FAULT_TOO_STEEP": "Pochylenie powyżej 35°",
+                    "NO_SIGNAL": "Brak sygnału granicznego",
+                    "L_MOTOR_ERROR": "Zablokowany lewy silnik",
+                    "R_MOTOR_ERROR": "Zablokowany prawy silnik",
+                    "BATTERY_VOL_HIG": "Wysokie napięcie akumulatora",
+                    "B_TEMP_ERROR": "Nieprawidłowa temperatura akumulatora",
+                    "DISCHAR_ERROR": "Błąd rozładowywania",
+                    "CHARGE_OVERTEMP": "Przegrzanie podczas ładowania",
+                    "BATTERY_DAMAGE": "Uszkodzenie akumulatora",
+                    "BATTERY_LOWDIS": "Niskie napięcie akumulatora",
+                    "CHARGE_CURDIS": "Przetężenie podczas rozładowywania",
+                    "CHARGE_TEMP": "Przegrzanie podczas rozładowywania",
+                    "UNEXCEPECT_LOW": "Niskie napięcie ładowania",
+                    "B_ERROR_RESET": "Błąd akumulatora wymagający restartu",
+                    "IMU_INVALID": "Awaria modułu IMU",
+                    "EMS_INVALID": "Awaria czujnika granicznego",
+                    "RAIN_INVALID": "Awaria czujnika deszczu",
+                    "HALL_INVALID": "Awaria czujnika Halla",
+                    "STEEP_OVER_3S": "Przechylenie maszyny",
+                    "OUTSIDE_AREA": "Maszyna poza obszarem pracy",
+                    "LIFTED": "Podniesienie maszyny",
+                    "TRAPPED": "Maszyna utknęła",
+                    "B_MOTOR_ERROR": "Awaria silnika kosiarki",
+                    "OVERTURN": "Przewrócenie maszyny",
+                    "MOTOR_OVERCUR": "Przetężenie silnika",
+                    "MOTOR_HALL": "Błąd czujnika Halla w silniku",
+                    "MOTOR_DISCON": "Błąd komunikacji z płytą silnika",
+                    "EMS_DISCONNECT": "Błąd komunikacji wykrywania granicy",
+                    "MOTOR_ERROR": "Błąd silnika"
+                },
+                "state_attributes": {
+                    "errorCount": {
+                        "name": "Ilość błędów"
+                    },
+                    "ERROR_FAULT_LEAN": {
+                        "name": "Przechył poniżej 24°",
+                        "state": {
+                            "FAULT_LEAN": "Przechył poniżej 24°",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_FAULT_TOO_STEEP": {
+                        "name": "Przechył powyżej 35°",
+                        "state": {
+                            "FAULT_TOO_STEEP": "Przechył powyżej 35°",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_NO_SIGNAL": {
+                        "name": "Brak sygnału pętli",
+                        "state": {
+                            "NO_SIGNAL": "Brak sygnału pętli",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_L_MOTOR_ERROR": {
+                        "name": "Zablokowany lewy silnik",
+                        "state": {
+                            "L_MOTOR_ERROR": "Zablokowany lewy silnik",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_R_MOTOR_ERROR": {
+                        "name": "Zablokowany prawy silnik",
+                        "state": {
+                            "R_MOTOR_ERROR": "Zablokowany prawy silnik",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_BATTERY_VOL_HIG": {
+                        "name": "Zbyt wysokie napięcie baterii",
+                        "state": {
+                            "BATTERY_VOL_HIG": "Zbyt wysokie napięcie baterii",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_B_TEMP_ERROR": {
+                        "name": "Nieprawidłowa temperatura baterii",
+                        "state": {
+                            "B_TEMP_ERROR": "Nieprawidłowa temperatura baterii",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_DISCHAR_ERROR": {
+                        "name": "Błąd rozładowywania",
+                        "state": {
+                            "DISCHAR_ERROR": "Błąd rozładowywania",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_CHARGE_OVERTEMP": {
+                        "name": "Przegrzanie podczas ładowania",
+                        "state": {
+                            "CHARGE_OVERTEMP": "Przegrzanie podczas ładowania",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_BATTERY_DAMAGE": {
+                        "name": "Uszkodzenie baterii",
+                        "state": {
+                            "BATTERY_DAMAGE": "Uszkodzenie baterii",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_BATTERY_LOWDIS": {
+                        "name": "Niskie napięcie baterii",
+                        "state": {
+                            "BATTERY_LOWDIS": "Niskie napięcie baterii",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_CHARGE_CURDIS": {
+                        "name": "Przeciążenie podczas rozładowywania",
+                        "state": {
+                            "CHARGE_CURDIS": "Przeciążenie podczas rozładowywania",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_CHARGE_TEMP": {
+                        "name": "Przegrzanie podczas pracy",
+                        "state": {
+                            "CHARGE_TEMP": "Przegrzanie podczas pracy",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_UNEXCEPECT_LOW": {
+                        "name": "Niskie napięcie ładowania",
+                        "state": {
+                            "UNEXCEPECT_LOW": "Niskie napięcie ładowania",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_B_ERROR_RESET": {
+                        "name": "Awaria baterii - wymagany restart",
+                        "state": {
+                            "B_ERROR_RESET": "Awaria baterii - wymagany restart",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_IMU_INVALID": {
+                        "name": "Błąd czujnika IMU",
+                        "state": {
+                            "IMU_INVALID": "Błąd czujnika IMU",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_EMS_INVALID": {
+                        "name": "Błąd czujnika pętli",
+                        "state": {
+                            "EMS_INVALID": "Błąd czujnika pętli",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_RAIN_INVALID": {
+                        "name": "Błąd czujnika deszczu",
+                        "state": {
+                            "RAIN_INVALID": "Błąd czujnika deszczu",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_HALL_INVALID": {
+                        "name": "Błąd czujnika Halla",
+                        "state": {
+                            "HALL_INVALID": "Błąd czujnika Halla",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_STEEEP_OVER_3S": {
+                        "name": "Pochylenie maszyny",
+                        "state": {
+                            "STEEEP_OVER_3S": "Pochylenie maszyny",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_OUTSIDE_AREA": {
+                        "name": "Maszyna poza obszarem",
+                        "state": {
+                            "OUTSIDE_AREA": "Maszyna poza obszarem",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_LIFTED": {
+                        "name": "Podniesienie maszyny",
+                        "state": {
+                            "LIFTED": "Podniesienie maszyny",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_TRAPPED": {
+                        "name": "Maszyna utknęła",
+                        "state": {
+                            "TRAPPED": "Maszyna utknęła",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_B_MOTOR_ERROR": {
+                        "name": "Awaria silnika noża",
+                        "state": {
+                            "B_MOTOR_ERROR": "Awaria silnika noża",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_OVERTURN": {
+                        "name": "Przewrócenie maszyny",
+                        "state": {
+                            "OVERTURN": "Przewrócenie maszyny",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_MOTOR_OVERCUR": {
+                        "name": "Przeciążenie silnika",
+                        "state": {
+                            "MOTOR_OVERCUR": "Przeciążenie silnika",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_MOTOR_HALL": {
+                        "name": "Błąd czujnika Halla silnika",
+                        "state": {
+                            "MOTOR_HALL": "Błąd czujnika Halla silnika",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_MOTOR_DISCON": {
+                        "name": "Błąd komunikacji z płytą silnika",
+                        "state": {
+                            "MOTOR_DISCON": "Błąd komunikacji z płytą silnika",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_EMS_DISCONNECT": {
+                        "name": "Błąd komunikacji wykrywania pętli",
+                        "state": {
+                            "EMS_DISCONNECT": "Błąd komunikacji wykrywania pętli",
+                            "NONE": "Brak"
+                        }
+                    },
+                    "ERROR_MOTOR_ERROR": {
+                        "name": "Błąd silnika",
+                        "state": {
+                            "MOTOR_ERROR": "Błąd silnika",
+                            "NONE": "Brak"
+                        }
+                    }
+                }
             }
         },
         "vacuum": {

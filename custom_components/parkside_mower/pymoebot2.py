@@ -1,4 +1,5 @@
 import base64
+import struct
 import logging
 import time
 from queue import Queue
@@ -204,7 +205,9 @@ class MoeBot:
         self.__rain_compensation_time = decoded[1]
 
     def __send_compensation(self, enabled, value):
-        pass
+        binary_data = struct.pack('?B', enabled, value)
+        base64_result = base64.b64encode(binary_data).decode('utf-8')
+        self.__queue_command(139, base64_result)
 
     def __bitmap_to_list(self, value):
         """Parse bitmap to errors"""
@@ -230,7 +233,6 @@ class MoeBot:
         pass
 
     def __loop(self, send_queue: Queue):
-        #STATUS_TIMER = 30
         KEEPALIVE_TIMER = 12
 
         _log.debug("Send an initial request for status")
@@ -238,7 +240,6 @@ class MoeBot:
 
         _log.debug("Begin the monitor loop")
         heartbeat_time = time.time() + KEEPALIVE_TIMER
-        #status_time = time.time() + STATUS_TIMER
         while True:
             if self.__shutdown.is_set():
                 _log.debug("Thread has been shutdown, exiting listen loop")
@@ -251,11 +252,6 @@ class MoeBot:
                 else:
                     data = self.__device.updatedps(index=[command[0]], nowait=False)
                 send_queue.task_done()
-            # elif status_time and time.time() >= status_time:
-            #     _log.debug("Time to poll for status")
-            #     # self.poll()
-            #     status_time = time.time() + STATUS_TIMER
-            #     heartbeat_time = time.time() + KEEPALIVE_TIMER
             elif time.time() >= heartbeat_time:
                 _log.debug("Sending a heartbeat")
                 data = self.__device.heartbeat(nowait=False)
@@ -427,7 +423,7 @@ class MoeBot:
             raise MoeBotStateException()
 
     def poll(self):
-        self.__device.set_dpsUsed({'139': None})
+        self.__device.add_dps_to_request(139) #does not work for some reason...
         self.__device.status(nowait=True)
         self.__queue_command(109, '')
 
