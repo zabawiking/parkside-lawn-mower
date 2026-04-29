@@ -23,6 +23,11 @@ triggers:
     attribute: errorCount
     from:
       - "0"
+  - trigger: state
+    entity_id:
+      - sensor.kosiarka_stan_kosiarki
+    to:
+      - EMERGENCY
 conditions: []
 actions:
   - variables:
