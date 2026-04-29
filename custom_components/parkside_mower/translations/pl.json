@@ -80,6 +80,7 @@
             "error_state": {
                 "name": "Błąd",
                 "state": {
+                    "NONE": "Brak",
                     "FAULT_LEAN": "Pochylenie poniżej 24°",
                     "FAULT_TOO_STEEP": "Pochylenie powyżej 35°",
                     "NO_SIGNAL": "Brak sygnału granicznego",

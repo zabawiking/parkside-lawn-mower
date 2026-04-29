@@ -80,6 +80,7 @@
       "error_state": {
         "name": "Error state",
         "state": {
+          "NONE": "None",
           "FAULT_LEAN": "Tilt less than 24°",
           "FAULT_TOO_STEEP": "Tilt greater than 35°",
           "NO_SIGNAL": "No boundary signal",

@@ -85,7 +85,7 @@ class ErrorStateSensor(SensorBase):
     @property
     def state(self):
         """Return first state of the sensor."""
-        return self._moebot.error_state[0] if self._moebot.error_state else "UNKNOWN"
+        return self._moebot.error_state[0] if self._moebot.error_state else "NONE"
 
     @property
     def extra_state_attributes(self):
