@@ -17,12 +17,11 @@ triggers:
       - sensor.kosiarka_ostrzezenie
     from:
       - NONE
-  - trigger: state
+  - trigger: numeric_state
     entity_id:
       - sensor.kosiarka_blad
     attribute: errorCount
-    from:
-      - "0"
+    above: 0
   - trigger: state
     entity_id:
       - sensor.kosiarka_stan_kosiarki
